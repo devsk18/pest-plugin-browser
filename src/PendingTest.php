@@ -138,6 +138,36 @@ final class PendingTest
     }
 
     /**
+     * Checks if the given field is focused.
+     */
+    public function assertFocused(string $selector): self
+    {
+        $this->operations[] = new Operations\AssertFocused($selector);
+
+        return $this;
+    }
+
+    /**
+     * Checks if the given field is not focused.
+     */
+    public function assertNotFocused(string $selector): self
+    {
+        $this->operations[] = new Operations\AssertNotFocused($selector);
+
+        return $this;
+    }
+
+    /**
+     * clicks a button element.
+     */
+    public function press(string $text, string $selector = 'button'): self
+    {
+        $this->operations[] = new Operations\Press($text, $selector);
+
+        return $this;
+    }
+
+    /**
      * Compile the JavaScript test file.
      */
     public function compile(): TestResult
